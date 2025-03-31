@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Readiness Game - Microsoft Power Platform</title>
+  <!-- Include jsPDF for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- Optional favicon to silence local resource warning; replace with your favicon path if available -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    /* Reset default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and background */
+body {
+    /*background-color: #0078d4; /* Blue background from the UI */
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: white;
+    background-image: url('bg.png');
+    /* Optional properties for fine-tuning */
+    background-size: cover; /* Scales the image to cover the entire div, may crop parts */
+    background-position: center; /* Centers the image in the div */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+/* Main game container */
+.game-container {
+    width: 1200px; /* Fixed width for desktops/laptops */
+    padding: 20px;
+}
+
+  /* header for logo and card counter */
+  .header {
+    width: 100%;
+    height: 125px;
+  }
+
+    .header-left {
+      width: 75%;
+      position: relative;
+      float: left;
+    }
+
+      .header-left img {
+        width: 200px;
+        height: auto;
+      }
+    
+    .header-right {
+      width: 25%;
+      position: relative;
+      float: left;
+      height: 100px;
+    }
+
+      .game-runtime {
+        width: 300px;
+        height: 50px;
+        position: relative;
+      }
+
+        #runtime, #cards {
+          background-image: url('remaining.png');
+            /* Optional properties for fine-tuning */
+            background-size:contain; /* Scales the image to cover the entire div, may crop parts */
+            background-position: center; /* Centers the image in the div */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+        }
+
+          #time-remaining-label, #remaining-cards-label {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: #2672bc;
+            font-style: italic;
+          }
+
+          #time-remaining {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: absolute;
+            top: 15px;
+            left: 240px;
+            color: #2672bc;
+          }
+
+          #remaining-cards {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: absolute;
+            top: 15px;
+            left: 265px;
+            color: #39b54a;
+          }
+
+/* Left column (game info, current card, explanation, instructions) */
+.left-column {
+    /* width: 25%; */
+    width: 375px;
+    padding-right: 15px;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+}
+
+.center-column {
+  width: 30px;
+  box-sizing: border-box;
+  position: relative;
+  height: 600px;
+  padding-top: 495px;
+  float: left;
+}
+
+/* Right column (zones and buttons) */
+.right-column {
+    width: 65%;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+}
+
+/* Current card area */
+/* .current-card-area {
+    border: 2px dashed white;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 22pt; /* Match "DRAW A CARD TO START" size 
+    font-weight: bold;
+    background-color: transparent; /* No background, just dashed border 
+} */
+
+.current-card-area {
+  width: 350px;
+  height: 240px;
+  background-image: url('CardFrame.png');
+    background-size:contain; /* Scales the image to cover the entire div, may crop parts */
+    background-position: center; /* Centers the image in the div */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+  position: relative;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+/* Card explanation */
+.card-explanation {
+    padding: 30px 0px 0px 0px;
+    min-height: 150px;
+    overflow-y: auto;
+    font-size: 12pt;
+    border: none; /* Remove default border */
+}
+
+  .card-explanation strong {
+    color: #f2f2f2;
+  }
+
+  .card-explanation p {
+    margin: 10px 0px 10px 0px;
+    font-size: 10pt;
+  }
+
+
+
+/* Instructions */
+.instructions {
+    padding: 10px;
+    padding-left: 220px;
+    color: white;
+    min-height: 100px;
+    font-size: 10pt;
+    line-height: 1.5;
+    border: none; /* Remove default border */
+}
+
+/* RIGHT ZONE */
+
+/* Zones container (grid for cards) */
+/*.zones-container {
+    display: grid;
+    grid-template-areas:
+        "can-do-now can-do-soon"
+        "can-do-later already-done";
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    min-height: 360px; /* Space for two rows of cards 
+}*/
+.zones-container {
+  width: 100%;
+  position: relative;
+  height: 550px;
+}
+
+/* Individual zone styling */
+/*.zone {
+    border-radius: 8px;
+    min-height: 180px;
+    width: 315px;
+    height: 275px;
+    flex-direction: column; 
+    align-items: center;
+    font-size: 18pt;
+    font-weight: bold;
+}
+    */
+.zone {
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+  height: 275px;
+  float: left;
+}
+
+/* Zone-specific colors and labels */
+
+.do-now {
+    grid-area: can-do-now;
+    background-image: url('green.png');
+    background-size: cover; /* Scales the image to cover the entire div, may crop parts */
+    background-position: center; /* Centers the image in the div */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+.do-soon {
+    grid-area: can-do-soon;
+    background-image: url('yellow.png');
+    background-size: cover; /* Scales the image to cover the entire div, may crop parts */
+    background-position: center; /* Centers the image in the div */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+.do-later {
+    grid-area: can-do-later;
+    background-image: url('red.png');
+    background-size: cover; /* Scales the image to cover the entire div, may crop parts */
+    background-position: center; /* Centers the image in the div */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+.done {
+    grid-area: already-done;
+    background-image: url('blue.png');
+    background-size: cover; /* Scales the image to cover the entire div, may crop parts */
+    background-position: center; /* Centers the image in the div */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+.zone-label {
+    color: white;
+    margin-bottom: 5px;
+    padding-left: 40px;
+    font-size: 10pt; /* Adjusted to match UI text size */
+    text-align: left;
+    font-weight: 100;
+    width: 100%;
+}
+
+/* Drop area for cards */
+.drop-area {
+    /* width: 100%; */
+    /* min-height: 150px; */
+    width: 390px;
+    height: 250px;
+    background-color: transparent; /* No background, just the zone’s gradient */
+    padding: 27px 0pc 0pc 48px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Card rows */
+.card-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom: 5px;
+    gap: 5px;
+    min-height: 90px;
+}
+
+/* Individual cards */
+.card {
+    width: 160px;
+    height: 170px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+    font-size: 12px;
+    text-align: center;
+    padding: 1cqmax;
+    box-sizing: border-box;
+    border-radius: 6px;
+    white-space: normal;
+    overflow: hidden;
+    color: black;
+    flex-shrink: 0;
+    position: absolute;
+    border: 1px dotted #a8a8a8;
+}
+
+/* Drag-over state for drop areas */
+.drop-area.drag-over {
+    background-color: rgba(255, 255, 255, 0.2); /* Slight white overlay for feedback */
+}
+
+/* Draw card button */
+.draw-card-button {
+    width: 200px;
+    height: 200px;
+    margin: 10px auto;
+    padding: 15px 30px;
+    border-radius: 150px;
+    border: 0px;
+    background-color: transparent;
+    cursor: pointer;
+    box-shadow: none; /* Remove default shadow */
+    transition: transform 0.3s ease;
+    background-image: url('DrawCard.png');
+    background-size: cover; /* Scales the image to cover the entire div, may crop parts */
+    background-position: center; /* Centers the image in the div */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    position: absolute;
+    right: -60px;
+    bottom: -50px;
+}
+
+.draw-card-button:hover {
+    transform: scale(1.1);
+    background-color: #ffbf00; /* Slightly lighter orange on hover */
+}
+
+/* Finish button */
+.finish-button {
+    width: 120px;
+    margin: 10px auto;
+    padding: 15px 30px;
+    border: 1px solid black;
+    border-radius: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: black;
+}
+
+.finish-button:hover {
+    background-color: #f0f0f0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    color: black;
+    position: absolute;
+    left: 40%;
+    top: 35%;
+}
+
+  .modal-content h2 {
+    font-weight: 100;
+  }
+
+  .modal-content p {
+    font-size: 12pt
+  }
+
+.modal button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal button:hover {
+    background-color: #005a9e;
+}
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <div class="header">
+      <div class="header-left">
+        <img src="PowerCatLogo.png" />
+      </div>
+      <div class="header-right">
+        <div class="game-runtime" id="runtime">
+          <p id="time-remaining-label">TIME REMAINING: </p>
+          <span id="time-remaining">30:00</span>
+        </div>
+        <div class="game-runtime" id="cards">
+          <p id="remaining-cards-label">REMAINING CARDS: </p>
+          <span id="remaining-cards">15</span>
+        </div>
+      </div>
+    </div>
+    <div class="left-column">     
+      <div class="current-card-area"></div>
+      <div class="card-explanation">Card explanation will appear here after drawing.</div>
+    </div>
+    <div class="center-column">
+      <button class="draw-card-button"></button>
+      <div id="finishModal" class="modal">
+        <div class="modal-content">
+            <h2>Finish Sorting</h2>
+            <p>Are you ready to generate the report?</p>
+            <button id="confirmFinish" class="finish-button">Finish Sorting & Generate Report</button>
+        </div>
+    </div>
+    </div>
+    <div class="right-column">
+      <div class="zones-container">
+        <div class="zone can-do-now">
+          <div class="zone-label"><p>CAN DO NOW, 6 WEEKS</p></div>
+          <div class="drop-area do-now" data-zone="can-do-now"></div>
+        </div>
+        <div class="zone can-do-soon">
+          <div class="zone-label"><p>CAN DO SOON, 3 MONTHS</p></div>
+          <div class="drop-area do-soon" data-zone="can-do-soon"></div>
+        </div>
+        <div class="zone can-do-later">
+          <div class="zone-label"><p>CAN DO LATER, 6 MONTHS</p></div>
+          <div class="drop-area do-later" data-zone="can-do-later"></div>
+        </div>
+        <div class="zone already-done">
+          <div class="zone-label"><p>ALREADY DONE</p></div>
+          <div class="drop-area done" data-zone="already-done"></div>
+        </div>
+      </div>
+      <div class="instructions">
+        <p>Draw a card from the deck. Once drawn: <br>
+        • Consider its relevance to your organization's Microsoft Power Platform AI readiness<br>
+        • Decide and then place the card the zone it belongs to<br>
+        Players use their decisions to assess the organization's AI risk management maturity.</p>
+      </div>  
+    </div>
+  </div>
+  <script>
+    // Card deck with Microsoft Power Platform focus, guidance, and scores
+    const deck = [
+    {
+        "id": "card1",
+        "content": "Acknowledge AI risks exist - raise awareness",
+        "score": 100,
+        "description": "This helps us know what AI-powered solutions we have and who is using them.",
+        "importance": "Recognizing the risks associated with AI is foundational to responsible AI adoption. Awareness ensures that stakeholders understand potential ethical, legal, and societal implications, paving the way for proactive risk management.",
+        "guidance": "Begin by familiarizing your team with Microsoft's Responsible AI principles, which emphasize fairness, reliability, privacy, inclusiveness, transparency, and accountability. These principles provide a framework for understanding and mitigating AI risks. https://www.microsoft.com/en-us/ai/principles-and-approach"
+    },
+    {
+        "id": "card2",
+        "content": "Nominate a responsible AI advocate",
+        "score": 90,
+        "description": "Establishing a policy ensures that AI is used ethically and securely within Power Platform.",
+        "importance": "Designating an AI advocate ensures that there is a dedicated individual overseeing the ethical and responsible use of AI within the organization. This role is crucial for implementing governance policies and ensuring compliance with responsible AI standards.",
+        "guidance": "Identify a team member to act as the responsible AI advocate. This individual should be well-versed in responsible AI practices and serve as a liaison between technical teams and leadership. https://www.microsoft.com/en-us/ai/principles-and-approach"
+    },
+    {
+        "id": "card3",
+        "content": "Run a bias awareness session",
+        "score": 80,
+        "description": "Assessing privacy risks in Power Platform AI solutions helps protect user data.",
+        "importance": "Conducting bias awareness sessions educates stakeholders about the potential for AI systems to perpetuate or amplify biases, leading to unfair outcomes. Understanding bias is essential for developing fair and equitable AI solutions.",
+        "guidance": "Organize workshops or training sessions focusing on bias in AI. Utilize resources such as Microsoft's guidelines on fairness in AI to structure your sessions and provide actionable insights. https://www.microsoft.com/en-us/ai/responsible-ai"
+    },
+    {
+        "id": "card4",
+        "content": "Identify one live or planned AI use case",
+        "score": 50,
+        "description": "Educating users on responsible AI ensures ethical and secure use of AI features.",
+        "importance": "Evaluating current or planned AI use cases allows organizations to assess potential risks and ensure alignment with ethical standards. This proactive approach helps in mitigating issues before they arise.",
+        "guidance": "Review your organization's AI initiatives and select one for a comprehensive assessment. Apply Microsoft's Responsible AI Impact Assessment template to evaluate the use case's implications and ensure responsible deployment."
+    },
+    {
+        "id": "card5",
+        "content": "Make sure we can understand how our AI tools make decisions",
+        "score": 70,
+        "description": "Ensuring that AI decisions are explainable builds trust and transparency.",
+        "importance": "Ensuring transparency in AI decision-making processes builds trust and allows for the identification and correction of errors or biases. Explainability is key to user acceptance and regulatory compliance.",
+        "guidance": "Implement tools and methodologies that enhance the interpretability of AI models. Microsoft's Responsible AI Toolbox offers resources to assess and improve model transparency. https://responsibleaitoolbox.ai/"
+    }
+];
+    // Immutable copy of deck for lookups
+    const allCards = [...deck];
+
+    let currentCard = null;
+    let gameStarted = false;
+    let timeLeft = 30 * 60; // 30 minutes in seconds
+    const timerElement = document.getElementById('time-remaining');
+    const remainingCardsElement = document.getElementById('remaining-cards');
+    const cardExplanationElement = document.querySelector('.card-explanation');
+    const finishButton = document.querySelector('.modal');
+
+    // Initialize remaining cards count
+    remainingCardsElement.textContent = `${deck.length}`;
+
+    // Track card placements by ID
+    const cardPlacements = {};
+
+    // Timer function
+    function updateTimer() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      if (timeLeft > 0) {
+        timeLeft--;
+      } else {
+        clearInterval(timerInterval);
+        alert('Time is up!');
+        finishButton.style.display = 'block';
+      }
+    }
+
+    let timerInterval;
+
+    // Manage card rows in drop areas (rows of 3 cards)
+    function manageCardRows(dropArea) {
+      const cards = Array.from(dropArea.querySelectorAll('.card'));
+      dropArea.innerHTML = '';
+      for (let i = 0; i < cards.length; i += 3) {
+        const row = document.createElement('div');
+        row.className = 'card-row';
+        for (let j = 0; j < 3 && i + j < cards.length; j++) {
+          row.appendChild(cards[i + j]);
+        }
+        dropArea.appendChild(row);
+      }
+    }
+
+    // Draw a card from the deck
+    function drawCard() {
+      if (!gameStarted) {
+        gameStarted = true;
+        timerInterval = setInterval(updateTimer, 1000);
+      }
+      if (deck.length > 0) {
+        const cardIndex = Math.floor(Math.random() * deck.length);
+        const cardData = deck.splice(cardIndex, 1)[0];
+        currentCard = document.createElement('div');
+        currentCard.className = 'card';
+        currentCard.draggable = true;
+        currentCard.innerText = cardData.content;
+        currentCard.id = cardData.id;
+        const currentCardArea = document.querySelector('.current-card-area');
+        currentCardArea.innerHTML = '';
+        currentCardArea.appendChild(currentCard);
+        currentCard.addEventListener('dragstart', handleDragStart);
+        cardExplanationElement.innerHTML = `
+          <strong>Description:</strong> <p>${cardData.description}</p><br>
+          <strong>Why It’s Important:</strong> <p>${cardData.importance}</p><br>
+        `;
+
+
+        remainingCardsElement.textContent = `${deck.length}`;
+      } else {
+        alert('No more cards in the deck!');
+        finishButton.style.display = 'block';
+      }
+    }
+
+    function handleDragStart(e) {
+        e.dataTransfer.setData('text/plain', e.target.id);
+        e.dataTransfer.setData('text/content', e.target.innerText);
+        // Store the initial mouse position relative to the card
+        const rect = e.target.getBoundingClientRect();
+        e.dataTransfer.setData('text/offsetX', e.clientX - rect.left);
+        e.dataTransfer.setData('text/offsetY', e.clientY - rect.top);
+    }
+
+    // Handle drag end
+    function handleDragEnd(e) {
+       const content = e.dataTransfer.getData('text/content') || e.target.innerText;
+       e.target.innerText = content || '';
+     }
+    
+    // Precise dropping
+    document.querySelectorAll('.drop-area').forEach(dropArea => {
+      dropArea.addEventListener('dragover', e => e.preventDefault());
+      dropArea.addEventListener('dragenter', e => e.target.classList.add('drag-over'));
+      dropArea.addEventListener('dragleave', e => e.target.classList.remove('drag-over'));
+      dropArea.addEventListener('drop', e => {
+          e.preventDefault();
+          const cardId = e.dataTransfer.getData('text/plain');
+          const card = document.getElementById(cardId);
+          if (card) {
+              // Set the card's position based on drop location
+              const rect = dropArea.getBoundingClientRect();
+              const x = e.clientX - rect.left - (card.offsetWidth / 2); // Center the card horizontally
+              const y = e.clientY - rect.top - (card.offsetHeight / 2); // Center the card vertically
+              card.style.left = `${x}px`;
+              card.style.top = `${y}px`;
+              dropArea.appendChild(card); // Move card to drop area
+              e.target.classList.remove('drag-over');
+              const content = e.dataTransfer.getData('text/content');
+              if (content) card.innerText = content;
+              const zone = dropArea.dataset.zone;
+              cardPlacements[card.id] = zone;
+          }
+      });
+    });
+    document.addEventListener('dragend', handleDragEnd);
+
+    // Attach draw card button
+    document.querySelector('.draw-card-button').addEventListener('click', drawCard);
+
+    // Generate PDF with text wrapping
+    function generatePDF() {
+      if (!window.jspdf) {
+        alert('jsPDF library failed to load. Please ensure an internet connection.');
+        return;
+      }
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const pageWidth = 180; // Max width for text wrapping
+      let y = 10;
+
+      // Title
+      doc.setFontSize(18);
+      doc.text('Microsoft Power Platform AI Readiness Report', 10, y);
+      y += 15;
+
+      // Introduction
+      doc.setFontSize(11);
+      const introText = 'This report summarizes your organization’s Microsoft Power Platform AI readiness based on the card sorting results, provides guidance for uncompleted actions, and includes a score summary.';
+      const splitIntro = doc.splitTextToSize(introText, pageWidth);
+      doc.text(splitIntro, 10, y);
+      y += splitIntro.length * 10;
+
+      // Calculate maxScore
+      const maxScore = allCards.reduce((sum, card) => sum + card.score, 0);
+
+      // Guidance for uncompleted actions
+      const notDoneCards = Object.entries(cardPlacements)
+        .filter(([_, zone]) => zone !== 'already-done')
+        .map(([cardId, zone]) => {
+          const card = allCards.find(c => c.id === cardId);
+          return card ? { ...card, zone } : null;
+        })
+        .filter(card => card !== null);
+
+      if (notDoneCards.length > 0) {
+        doc.text('Guidance for Uncompleted Actions:', 10, y);
+        y += 10;
+        notDoneCards.forEach((card) => {
+          if (y > 280) {
+            doc.addPage();
+            y = 10;
+          }
+          const cardText = `- ${card.content} (${card.zone.replace('-', ' ').toUpperCase()})`;
+          const splitCardText = doc.splitTextToSize(cardText, pageWidth);
+          doc.text(splitCardText, 10, y);
+          const guidanceText = doc.splitTextToSize(card.guidance, pageWidth - 10);
+          doc.text(guidanceText, 20, y + 5);
+          y += (splitCardText.length * 10) + (guidanceText.length * 10) + 5;
+        });
+      } else {
+        doc.text('All actions are completed! No further guidance needed.', 10, y);
+        y += 10;
+      }
+
+      // Maturity Assessment
+      y += 10;
+      const totalScore = calculateTotalScore(cardPlacements);
+      const maturity = assessMaturity(totalScore, maxScore);
+      const maturityText = `Your organization’s Microsoft Power Platform AI readiness maturity is: ${maturity.level} (${maturity.description})`;
+      const splitMaturityText = doc.splitTextToSize(maturityText, pageWidth);
+      doc.text('Maturity Assessment:', 10, y);
+      y += 10;
+      doc.text(splitMaturityText, 10, y);
+      y += splitMaturityText.length * 10;
+
+      // Total Score
+      y += 10;
+      const scoreText = `Total Readiness Score: ${totalScore} / ${maxScore} (Higher scores indicate greater AI readiness)`;
+      const splitScoreText = doc.splitTextToSize(scoreText, pageWidth);
+      doc.text(splitScoreText, 10, y);
+
+      // Save PDF
+      doc.save('power-platform-ai-readiness-report.pdf');
+    }
+
+    // Assess maturity based on score percentage
+    function assessMaturity(totalScore, maxScore) {
+      const scorePercent = totalScore > 0 ? (totalScore / maxScore) * 100 : 0;
+      if (scorePercent > 80) return { level: 'Optimizing', description: 'Advanced, continuous improvement in Power Platform AI readiness.' };
+      if (scorePercent > 60) return { level: 'Managed', description: 'Processes are monitored and controlled with metrics in Power Platform AI.' };
+      if (scorePercent > 40) return { level: 'Defined', description: 'Standardized, documented processes are in place for Power Platform AI.' };
+      if (scorePercent > 20) return { level: 'Developing', description: 'Basic awareness and some processes, but inconsistent application in Power Platform AI.' };
+      return { level: 'Initial', description: 'Ad hoc and reactive; no formal processes for Power Platform AI in place.' };
+    }
+
+    // Calculate total score
+    function calculateTotalScore(placements) {
+      let totalScore = 0;
+      Object.entries(placements).forEach(([cardId, zone]) => {
+        const card = allCards.find(c => c.id === cardId);
+        if (card) {
+          if (zone === 'already-done') totalScore += card.score;
+          else if (zone === 'can-do-now') totalScore += Math.floor(card.score * 0.75);
+          else if (zone === 'can-do-soon') totalScore += Math.floor(card.score * 0.5);
+          else if (zone === 'can-do-later') totalScore += Math.floor(card.score * 0.25);
+        }
+      });
+      return totalScore;
+    }
+
+    // Attach finish button
+    finishButton.addEventListener('click', generatePDF);
+
+    // Check jsPDF availability
+    if (!window.jspdf) {
+      console.error('jsPDF library failed to load.');
+      alert('jsPDF library failed to load. Please ensure an internet connection.');
+    }
+  </script>
+</body>
+</html>
