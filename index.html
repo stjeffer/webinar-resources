@@ -439,40 +439,112 @@ body {
         "content": "Acknowledge AI risks exist - raise awareness",
         "score": 100,
         "description": "This helps us know what AI-powered solutions we have and who is using them.",
-        "importance": "Recognizing the risks associated with AI is foundational to responsible AI adoption. Awareness ensures that stakeholders understand potential ethical, legal, and societal implications, paving the way for proactive risk management.",
-        "guidance": "Begin by familiarizing your team with Microsoft's Responsible AI principles, which emphasize fairness, reliability, privacy, inclusiveness, transparency, and accountability. These principles provide a framework for understanding and mitigating AI risks. https://www.microsoft.com/en-us/ai/principles-and-approach"
+        "importance": "Recognizing that AI introduces new risks is the first step toward responsible oversight. It sets the tone for governance, enabling better alignment with compliance, privacy, and ethical standards.",
+        "guidance": "Start with an internal awareness campaign. Use Microsoft resources such as the Responsible AI Principles overview: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/innovate/responsible-ai"
     },
     {
         "id": "card2",
         "content": "Nominate a responsible AI advocate",
         "score": 90,
         "description": "Establishing a policy ensures that AI is used ethically and securely within Power Platform.",
-        "importance": "Designating an AI advocate ensures that there is a dedicated individual overseeing the ethical and responsible use of AI within the organization. This role is crucial for implementing governance policies and ensuring compliance with responsible AI standards.",
-        "guidance": "Identify a team member to act as the responsible AI advocate. This individual should be well-versed in responsible AI practices and serve as a liaison between technical teams and leadership. https://www.microsoft.com/en-us/ai/principles-and-approach"
+        "importance": "A clear advocate ensures that AI efforts remain visible, coordinated, and aligned with organizational values. It creates a point of accountability for AI governance.",
+        "guidance": "Define the advocate role in your AI governance structure. Learn more at: https://learn.microsoft.com/en-us/azure/architecture/example-scenario/ai/responsible-ai-monitoring"
     },
     {
         "id": "card3",
         "content": "Run a bias awareness session",
         "score": 80,
         "description": "Assessing privacy risks in Power Platform AI solutions helps protect user data.",
-        "importance": "Conducting bias awareness sessions educates stakeholders about the potential for AI systems to perpetuate or amplify biases, leading to unfair outcomes. Understanding bias is essential for developing fair and equitable AI solutions.",
-        "guidance": "Organize workshops or training sessions focusing on bias in AI. Utilize resources such as Microsoft's guidelines on fairness in AI to structure your sessions and provide actionable insights. https://www.microsoft.com/en-us/ai/responsible-ai"
+        "importance": "Bias can exist in data, design, or deployment. Building awareness helps teams identify and prevent harmful or unfair outcomes.",
+        "guidance": "Use Microsoft Learn: https://learn.microsoft.com/en-us/training/modules/embrace-responsible-ai-principles-practices/"
     },
     {
         "id": "card4",
         "content": "Identify one live or planned AI use case",
         "score": 50,
         "description": "Educating users on responsible AI ensures ethical and secure use of AI features.",
-        "importance": "Evaluating current or planned AI use cases allows organizations to assess potential risks and ensure alignment with ethical standards. This proactive approach helps in mitigating issues before they arise.",
-        "guidance": "Review your organization's AI initiatives and select one for a comprehensive assessment. Apply Microsoft's Responsible AI Impact Assessment template to evaluate the use case's implications and ensure responsible deployment."
+        "importance": "By naming specific use cases, organizations can prioritize risk management efforts and apply Responsible AI practices where it matters most.",
+        "guidance": "Use the AI Use Case Assessment Template from Microsoft: https://aka.ms/raievaluationtemplate"
     },
     {
         "id": "card5",
         "content": "Make sure we can understand how our AI tools make decisions",
         "score": 70,
         "description": "Ensuring that AI decisions are explainable builds trust and transparency.",
-        "importance": "Ensuring transparency in AI decision-making processes builds trust and allows for the identification and correction of errors or biases. Explainability is key to user acceptance and regulatory compliance.",
-        "guidance": "Implement tools and methodologies that enhance the interpretability of AI models. Microsoft's Responsible AI Toolbox offers resources to assess and improve model transparency. https://responsibleaitoolbox.ai/"
+        "importance": "Understanding how AI systems work allows users to trust the outputs and spot unintended behaviors. This is essential for transparency and compliance.",
+        "guidance": "Use tools like SHAP or LIME for model explainability. See Microsoft\u2019s guidance: https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai#transparency"
+    },
+    {
+        "id": "card6",
+        "content": "Create an AI risk checklist",
+        "score": 75,
+        "description": "Monitoring ensures that Power Platform AI solutions perform reliably and as expected.",
+        "importance": "A checklist provides repeatable guardrails for risk identification, helping teams standardize oversight and reduce blind spots.",
+        "guidance": "Refer to the Microsoft Responsible AI Impact Assessment Template: https://aka.ms/powercat/rai-template"
+    },
+    {
+        "id": "card7",
+        "content": "Define sensitive features in your data",
+        "score": 65,
+        "description": "Limiting data collection reduces privacy and security risks.",
+        "importance": "Identifying sensitive features like race, gender, or age ensures these attributes are treated with care and can guide fairness assessments.",
+        "guidance": "Review Microsofts data privacy and protection practices: https://learn.microsoft.com/en-us/power-platform/admin/wp-compliance-data-privacy"
+    },
+    {
+        "id": "card8",
+        "content": "Assign responsibility for monitoring models",
+        "score": 60,
+        "description": "Engaging stakeholders ensures diverse input and alignment with organizational goals.",
+        "importance": "Monitoring can't be ad hoc - assigned responsibility ensures continuity and timely detection of risks like performance drift or bias.",
+        "guidance": "Build monitoring roles into your Center of Excellence structure. Explore model monitoring with Azure: https://learn.microsoft.com/en-us/azure/machine-learning/how-to-monitor-models"
+    },
+    {
+        "id": "card9",
+        "content": "Review past model decisions for fairness",
+        "score": 70,
+        "description": "Adversarial testing identifies vulnerabilities in AI systems.",
+        "importance": "Regular reviews of historical decisions help uncover hidden patterns of discrimination or bias in existing systems.",
+        "guidance": "Use tools like Fairlearn to compare outcomes across groups: https://fairlearn.org"
+    },
+    {
+        "id": "card10",
+        "content": "Develop a model card template",
+        "score": 55,
+        "description": "Adhering to RAI principles ensures ethical AI use in Power Platform.",
+        "importance": "A model card documents the model\u2019s purpose, performance, limitations, and ethical considerations critical for auditability and transparency.",
+        "guidance": "See Microsofts documentation on model cards and responsible AI documentation: https://learn.microsoft.com/en-us/azure/machine-learning/concept-model-explanation#documenting-ai"
+    },
+    {
+        "id": "card11",
+        "content": "Plan how to handle problems or emergencies with our AI tools",
+        "score": 85,
+        "description": "Clear incident response plans protect operations and trust in AI systems.",
+        "importance": "Without a plan, delays or confusion during incidents can lead to regulatory risk or reputational damage.",
+        "guidance": "Define escalation protocols and communication plans. See Microsoft's incident response planning: https://learn.microsoft.com/en-us/security/compass/incident-response-playbooks"
+    },
+    {
+        "id": "card12",
+        "content": "Publish your AI use case inventory",
+        "score": 60,
+        "description": "Using methods like differential privacy enhances data protection.",
+        "importance": "An inventory provides visibility into how AI is being used and ensures the right guardrails are applied to each use case.",
+        "guidance": "Track Power Platform assets in the CoE Starter Kit: https://learn.microsoft.com/en-us/power-platform/guidance/coe/starter-kit"
+    },
+    {
+        "id": "card13",
+        "content": "Establish a review gate for high-risk models",
+        "score": 65,
+        "description": "Conducting fairness evaluations prevents bias in AI outcomes.",
+        "importance": "Review gates introduce checks and balances before AI systems go live, especially for high-impact use cases.",
+        "guidance": "Incorporate the Responsible AI Standard process: https://aka.ms/ResponsibleAIGuidelines"
+    },
+    {
+        "id": "card14",
+        "content": "Include AI risk in project planning",
+        "score": 50,
+        "description": "A transparency report details AI usage for accountability.",
+        "importance": "Embedding AI risk in project planning ensures it's considered from day one, not as an afterthought.",
+        "guidance": "Use Microsofts AI readiness tools and risk registers. See: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/innovate/responsible-ai"
     }
 ];
     // Immutable copy of deck for lookups
