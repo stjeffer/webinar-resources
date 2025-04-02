@@ -478,7 +478,7 @@ body {
         "id": "card6",
         "content": "Create an AI risk checklist",
         "score": 75,
-        "description": "Monitoring ensures that Power Platform AI solutions perform reliably, fairly, and as expected — especially as they scale.",
+        "description": "Create a basic checklist that helps makers understand the risks associated in developing AI-powered solutions.",
         "importance": "AI risk checklists help teams avoid blind spots by introducing consistency across projects. Whether building with AI Builder, Copilot Studio, or custom models, a checklist ensures the same types of questions are asked — about fairness, privacy, explainability, and safety. It also makes it easier to onboard new projects and hold teams accountable to shared standards.",
         "guidance": "Start by adapting Microsoft’s Responsible AI Impact Assessment Template to create a lightweight checklist tailored to your organization. Include questions like: Have sensitive features been considered? Who is impacted by this AI decision? Can results be explained? Use this template to begin: https://aka.ms/powercat/rai-template"
     },
@@ -486,7 +486,7 @@ body {
         "id": "card7",
         "content": "Define sensitive features in your data",
         "score": 65,
-        "description": "Limiting data collection reduces privacy and security risks.",
+        "description": "Identify features that are sensitive (race, age, gender, etc.)",
         "importance": "Sensitive features — like gender, age, race, or health status — can influence model outcomes in unintended ways. Identifying these features allows teams to handle them appropriately, either by excluding them from training, using them to evaluate fairness, or applying mitigation strategies. Without this step, bias can go undetected or be amplified.",
         "guidance": "Make it part of your AI project setup to label sensitive features and assess how they are used. For Power Platform solutions, consider how these attributes may appear in structured fields, prompts, or form inputs. Refer to Microsoft's guidance on data privacy and compliance: https://learn.microsoft.com/en-us/power-platform/admin/wp-compliance-data-privacy"
     },
@@ -494,7 +494,7 @@ body {
         "id": "card8",
         "content": "Assign responsibility for monitoring models",
         "score": 60,
-        "description": "Engaging stakeholders ensures diverse input and alignment with organizational goals.",
+        "description": "Ensure model owners are identified and assigned for accountability in model performance and outcomes.",
         "importance": "Monitoring only works if someone is accountable for it. Assigning a responsible person or team ensures that model performance, fairness, and reliability are checked regularly — not just after something goes wrong. It also supports continuous improvement and trust.",
         "guidance": "Add AI monitoring responsibilities to your Center of Excellence or governance team. This includes reviewing metrics, flagging issues, and ensuring retraining where needed. For custom models, explore Azure Machine Learning’s model monitoring tools: https://learn.microsoft.com/en-us/azure/machine-learning/how-to-monitor-models"
     },
@@ -502,7 +502,7 @@ body {
         "id": "card9",
         "content": "Review past model decisions for fairness",
         "score": 70,
-        "description": "Adversarial testing identifies vulnerabilities in AI systems.",
+        "description": "Review custom models for bias - consider using Fairlearn.",
         "importance": "Sometimes the best way to identify bias is by looking backwards. Reviewing historical predictions or classifications can reveal systematic disparities across groups — especially where AI is used in approvals, routing, or content generation. This practice builds accountability and exposes risks that may not be obvious in overall accuracy.",
         "guidance": "Run fairness audits periodically. For custom models, use Fairlearn to compare model outcomes across sensitive groups: https://fairlearn.org. In Power Platform scenarios, look at how outputs from AI Builder or Copilot-based solutions vary by user group or context — and log edge cases for deeper review."
     },
@@ -510,7 +510,7 @@ body {
         "id": "card10",
         "content": "Develop a model card template",
         "score": 55,
-        "description": "Adhering to RAI principles ensures ethical AI use in Power Platform.",
+        "description": "Standardizing model cards to ensure easy and broad adoption for custom models.",
         "importance": "Model cards act like fact sheets for AI — summarizing what a model does, how it performs, and where it may fall short. They help non-technical stakeholders understand a model's purpose and limitations, making transparency part of the delivery process.",
         "guidance": "Use Microsoft’s guidance to create lightweight model cards for any AI tool — including AI Builder models or custom machine learning. Capture purpose, input/output expectations, known limitations, and retraining triggers. Learn more here: https://learn.microsoft.com/en-us/azure/machine-learning/concept-model-explanation#documenting-ai"
     },
@@ -526,7 +526,7 @@ body {
         "id": "card12",
         "content": "Publish your AI use case inventory",
         "score": 60,
-        "description": "Using methods like differential privacy enhances data protection.",
+        "description": "Develop an AI use case inventory including existing solutions, and planned ideas.",
         "importance": "An AI use case inventory gives you visibility — what’s live, what’s planned, and who’s responsible. It supports governance, auditing, and communication with stakeholders. It also helps you assess risk and prioritize reviews.",
         "guidance": "Use the Microsoft Power Platform CoE Starter Kit to track apps, flows, copilots, and AI Builder usage. Update regularly and classify use cases by risk, data sensitivity, or audience. Learn more: https://learn.microsoft.com/en-us/power-platform/guidance/coe/starter-kit"
     },
@@ -542,7 +542,7 @@ body {
         "id": "card14",
         "content": "Include AI risk in project planning",
         "score": 50,
-        "description": "A transparency report details AI usage for accountability.",
+        "description": "Develop quality and risk stage gates into AI projects.",
         "importance": "When AI risk is built into project planning — not added later — it becomes part of the delivery mindset. This reduces surprises, aligns teams on expectations, and ensures governance keeps pace with innovation.",
         "guidance": "Add AI risk prompts to your project intake forms or planning templates. Ask questions like: What decisions is this AI influencing? Who could be impacted if it’s wrong? Use Microsoft’s Responsible AI guidance from the Cloud Adoption Framework: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/innovate/responsible-ai"
     }
