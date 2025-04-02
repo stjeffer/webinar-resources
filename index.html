@@ -435,116 +435,116 @@ body {
     // Card deck with Microsoft Power Platform focus, guidance, and scores
     const deck = [
     {
-    "id": "card1",
-    "content": "Acknowledge AI risks exist - raise awareness",
-    "score": 100,
-    "description": "Start raising awareness of the various risks associated with AI-powered solutions.",
-    "importance": "Acknowledging AI risk is foundational. Without this step, teams often move too quickly into experimentation without safeguards. Raising awareness helps organizations shift from assuming AI is just another automation tool to recognizing its potential for bias, misuse, privacy violations, or unintended consequences. This awareness also creates shared language and urgency across IT, business, and compliance teams.",
-    "guidance": "Run an internal awareness campaign tailored to your organization's AI footprint. Include examples of risks across different tools — such as bias in model outcomes (AI Builder), hallucinations in Copilot responses (M365 Copilot), or improper data use. Use Microsoft’s Responsible AI Principles as a framework for discussion. Start with this resource: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/innovate/responsible-ai. You can also explore Microsoft’s Responsible AI Standard here: https://www.microsoft.com/en-us/ai/responsible-ai-resources."
+        "id": "card1",
+        "content": "Acknowledge AI risks exist - raise awareness",
+        "score": 100,
+        "description": "Start raising awareness of the various risks associated with AI-powered solutions.",
+        "importance": "Acknowledging AI risk is foundational. Without this step, teams often move too quickly into experimentation without safeguards. Raising awareness helps organizations shift from assuming AI is just another automation tool to recognizing its potential for bias, misuse, privacy violations, or unintended consequences. This awareness also creates shared language and urgency across IT, business, and compliance teams.",
+        "guidance": "Run an internal awareness campaign tailored to your organization's AI footprint. Include examples of risks across different tools — such as bias in model outcomes (AI Builder), hallucinations in Copilot responses (M365 Copilot), or improper data use. Use Microsoft’s Responsible AI Principles as a framework for discussion. Start with this resource: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/innovate/responsible-ai. You can also explore Microsoft’s Responsible AI Standard here: https://www.microsoft.com/en-us/ai/responsible-ai-resources."
     },
     {
         "id": "card2",
         "content": "Nominate a responsible AI advocate",
         "score": 90,
-        "description": "Start to build up a team of AI advocates. Power users, managers and executives that understand responsible AI.",
-        "importance": "A clear advocate ensures that AI efforts remain visible, coordinated, and aligned with organizational values. It creates a point of accountability for AI governance.",
-        "guidance": "Define the advocate role in your AI governance structure. Learn more at: https://learn.microsoft.com/en-us/azure/architecture/example-scenario/ai/responsible-ai-monitoring"
+        "description": "Start to build up a team of AI advocates — power users, managers, and executives who understand responsible AI and help shape how it's applied.",
+        "importance": "A named advocate signals intent. It gives AI risk and ethics a seat at the table — someone who champions responsible practices, raises concerns, and connects teams across data, IT, and business units. This early leadership role is especially important in decentralized environments like the Power Platform, where solutions often originate outside traditional IT.",
+        "guidance": "Define an advocate role within your AI or Power Platform Center of Excellence (CoE). Ensure they have visibility of AI use cases across the business and understand Microsoft’s Responsible AI principles. They don’t need to be technical — they need to be respected, curious, and connected. For example governance structures and monitoring practices, see: https://learn.microsoft.com/en-us/azure/architecture/example-scenario/ai/responsible-ai-monitoring. You can also introduce your advocate to Microsoft’s Responsible AI resource hub: https://www.microsoft.com/en-us/ai/responsible-ai."
     },
     {
         "id": "card3",
         "content": "Run a bias awareness session",
         "score": 80,
-        "description": "Start training teams in bias.",
-        "importance": "Bias can exist in data, design, or deployment. Building awareness helps teams identify and prevent harmful or unfair outcomes.",
-        "guidance": "Use Microsoft Learn: https://learn.microsoft.com/en-us/training/modules/embrace-responsible-ai-principles-practices/"
+        "description": "Start training teams in bias — how it appears in AI systems, how it affects outcomes, and what we can do about it.",
+        "importance": "Bias isn’t just a data problem — it can emerge at any point: in how problems are framed, which examples are used in training, or how outputs are interpreted. Bias awareness helps teams spot risks before models or prompts go live, especially in areas like AI Builder form processing, Copilot summaries, or Power Virtual Agents. It builds critical thinking and shifts the conversation from 'Is it working?' to 'Is it working fairly?'",
+        "guidance": "Run short sessions using real-world examples from your organization — both custom models and low-code scenarios. Focus on where bias hides in language, decision-making, or training sets. Microsoft Learn has a great starter module that covers key principles: https://learn.microsoft.com/en-us/training/modules/embrace-responsible-ai-principles-practices/. For deeper sessions, consider bringing in your advocate or ethics lead to help tailor the content."
     },
     {
         "id": "card4",
         "content": "Identify one live or planned AI use case",
         "score": 50,
-        "description": "Educating users on responsible AI ensures ethical and secure use of AI features.",
-        "importance": "By naming specific use cases, organizations can prioritize risk management efforts and apply Responsible AI practices where it matters most.",
-        "guidance": "Use the AI Use Case Assessment Template from Microsoft: https://aka.ms/raievaluationtemplate"
+        "description": "Pinpointing a real use case creates a focus for learning, applying responsible AI practices, and improving adoption maturity.",
+        "importance": "Responsible AI becomes real when applied to specific scenarios. By identifying one live or planned use case — whether it’s a Copilot agent, an AI Builder form processor, or a custom model — teams can begin assessing risk, defining expected outcomes, and applying governance in context. It also helps to reveal gaps in data, process, or accountability before scaling.",
+        "guidance": "Use Microsoft’s Responsible AI Evaluation Template to guide initial analysis: https://aka.ms/raievaluationtemplate. Focus on intended purpose, potential impact, and who is affected by the outputs. This helps initiate a repeatable process and makes abstract principles tangible. Start small — the goal is to learn through application, not perfection."
     },
     {
         "id": "card5",
         "content": "Make sure we can understand how our AI tools make decisions",
         "score": 70,
-        "description": "Ensuring that AI decisions are explainable builds trust and transparency.",
-        "importance": "Understanding how AI systems work allows users to trust the outputs and spot unintended behaviors. This is essential for transparency and compliance.",
-        "guidance": "Use tools like SHAP or LIME for model explainability. See Microsoft\u2019s guidance: https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai#transparency"
+        "description": "Ensuring that AI decisions are explainable builds trust, transparency, and accountability — especially when AI is supporting real-world decisions.",
+        "importance": "When users can't understand how AI came to a conclusion — whether it's a Copilot suggestion, a document classification, or a customer-facing chatbot — trust erodes. Explainability is essential for compliance, debugging, and user adoption. It also helps detect hidden bias or logic errors that might otherwise go unnoticed.",
+        "guidance": "For custom models, use tools like SHAP or LIME to explain predictions and visualize feature importance. For low-code AI tools, ensure that decisions are traceable — document AI Builder models, prompt design in Copilot Studio, and decision logic in flows. For explainability guidance, see: https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai#transparency"
     },
     {
         "id": "card6",
         "content": "Create an AI risk checklist",
         "score": 75,
-        "description": "Monitoring ensures that Power Platform AI solutions perform reliably and as expected.",
-        "importance": "A checklist provides repeatable guardrails for risk identification, helping teams standardize oversight and reduce blind spots.",
-        "guidance": "Refer to the Microsoft Responsible AI Impact Assessment Template: https://aka.ms/powercat/rai-template"
+        "description": "Monitoring ensures that Power Platform AI solutions perform reliably, fairly, and as expected — especially as they scale.",
+        "importance": "AI risk checklists help teams avoid blind spots by introducing consistency across projects. Whether building with AI Builder, Copilot Studio, or custom models, a checklist ensures the same types of questions are asked — about fairness, privacy, explainability, and safety. It also makes it easier to onboard new projects and hold teams accountable to shared standards.",
+        "guidance": "Start by adapting Microsoft’s Responsible AI Impact Assessment Template to create a lightweight checklist tailored to your organization. Include questions like: Have sensitive features been considered? Who is impacted by this AI decision? Can results be explained? Use this template to begin: https://aka.ms/powercat/rai-template"
     },
-    {
+        {
         "id": "card7",
         "content": "Define sensitive features in your data",
         "score": 65,
         "description": "Limiting data collection reduces privacy and security risks.",
-        "importance": "Identifying sensitive features like race, gender, or age ensures these attributes are treated with care and can guide fairness assessments.",
-        "guidance": "Review Microsofts data privacy and protection practices: https://learn.microsoft.com/en-us/power-platform/admin/wp-compliance-data-privacy"
+        "importance": "Sensitive features — like gender, age, race, or health status — can influence model outcomes in unintended ways. Identifying these features allows teams to handle them appropriately, either by excluding them from training, using them to evaluate fairness, or applying mitigation strategies. Without this step, bias can go undetected or be amplified.",
+        "guidance": "Make it part of your AI project setup to label sensitive features and assess how they are used. For Power Platform solutions, consider how these attributes may appear in structured fields, prompts, or form inputs. Refer to Microsoft's guidance on data privacy and compliance: https://learn.microsoft.com/en-us/power-platform/admin/wp-compliance-data-privacy"
     },
-    {
+        {
         "id": "card8",
         "content": "Assign responsibility for monitoring models",
         "score": 60,
         "description": "Engaging stakeholders ensures diverse input and alignment with organizational goals.",
-        "importance": "Monitoring can't be ad hoc - assigned responsibility ensures continuity and timely detection of risks like performance drift or bias.",
-        "guidance": "Build monitoring roles into your Center of Excellence structure. Explore model monitoring with Azure: https://learn.microsoft.com/en-us/azure/machine-learning/how-to-monitor-models"
+        "importance": "Monitoring only works if someone is accountable for it. Assigning a responsible person or team ensures that model performance, fairness, and reliability are checked regularly — not just after something goes wrong. It also supports continuous improvement and trust.",
+        "guidance": "Add AI monitoring responsibilities to your Center of Excellence or governance team. This includes reviewing metrics, flagging issues, and ensuring retraining where needed. For custom models, explore Azure Machine Learning’s model monitoring tools: https://learn.microsoft.com/en-us/azure/machine-learning/how-to-monitor-models"
     },
     {
         "id": "card9",
         "content": "Review past model decisions for fairness",
         "score": 70,
         "description": "Adversarial testing identifies vulnerabilities in AI systems.",
-        "importance": "Regular reviews of historical decisions help uncover hidden patterns of discrimination or bias in existing systems.",
-        "guidance": "Use tools like Fairlearn to compare outcomes across groups: https://fairlearn.org"
+        "importance": "Sometimes the best way to identify bias is by looking backwards. Reviewing historical predictions or classifications can reveal systematic disparities across groups — especially where AI is used in approvals, routing, or content generation. This practice builds accountability and exposes risks that may not be obvious in overall accuracy.",
+        "guidance": "Run fairness audits periodically. For custom models, use Fairlearn to compare model outcomes across sensitive groups: https://fairlearn.org. In Power Platform scenarios, look at how outputs from AI Builder or Copilot-based solutions vary by user group or context — and log edge cases for deeper review."
     },
     {
         "id": "card10",
         "content": "Develop a model card template",
         "score": 55,
         "description": "Adhering to RAI principles ensures ethical AI use in Power Platform.",
-        "importance": "A model card documents the model\u2019s purpose, performance, limitations, and ethical considerations critical for auditability and transparency.",
-        "guidance": "See Microsofts documentation on model cards and responsible AI documentation: https://learn.microsoft.com/en-us/azure/machine-learning/concept-model-explanation#documenting-ai"
+        "importance": "Model cards act like fact sheets for AI — summarizing what a model does, how it performs, and where it may fall short. They help non-technical stakeholders understand a model's purpose and limitations, making transparency part of the delivery process.",
+        "guidance": "Use Microsoft’s guidance to create lightweight model cards for any AI tool — including AI Builder models or custom machine learning. Capture purpose, input/output expectations, known limitations, and retraining triggers. Learn more here: https://learn.microsoft.com/en-us/azure/machine-learning/concept-model-explanation#documenting-ai"
     },
     {
         "id": "card11",
         "content": "Plan how to handle problems or emergencies with our AI tools",
         "score": 85,
         "description": "Clear incident response plans protect operations and trust in AI systems.",
-        "importance": "Without a plan, delays or confusion during incidents can lead to regulatory risk or reputational damage.",
-        "guidance": "Define escalation protocols and communication plans. See Microsoft's incident response planning: https://learn.microsoft.com/en-us/security/compass/incident-response-playbooks"
+        "importance": "AI failures — from biased decisions to prompt misuse — need fast, structured responses. Without a plan, teams scramble, trust erodes, and compliance risks rise. A well-prepared response process protects users, your brand, and your business.",
+        "guidance": "Create a playbook for AI-related incidents, similar to how you'd handle outages or security breaches. Define incident types, escalation paths, and comms plans. Microsoft offers example response strategies here: https://learn.microsoft.com/en-us/security/compass/incident-response-playbooks"
     },
     {
         "id": "card12",
         "content": "Publish your AI use case inventory",
         "score": 60,
         "description": "Using methods like differential privacy enhances data protection.",
-        "importance": "An inventory provides visibility into how AI is being used and ensures the right guardrails are applied to each use case.",
-        "guidance": "Track Power Platform assets in the CoE Starter Kit: https://learn.microsoft.com/en-us/power-platform/guidance/coe/starter-kit"
+        "importance": "An AI use case inventory gives you visibility — what’s live, what’s planned, and who’s responsible. It supports governance, auditing, and communication with stakeholders. It also helps you assess risk and prioritize reviews.",
+        "guidance": "Use the Microsoft Power Platform CoE Starter Kit to track apps, flows, copilots, and AI Builder usage. Update regularly and classify use cases by risk, data sensitivity, or audience. Learn more: https://learn.microsoft.com/en-us/power-platform/guidance/coe/starter-kit"
     },
     {
         "id": "card13",
         "content": "Establish a review gate for high-risk models",
         "score": 65,
         "description": "Conducting fairness evaluations prevents bias in AI outcomes.",
-        "importance": "Review gates introduce checks and balances before AI systems go live, especially for high-impact use cases.",
-        "guidance": "Incorporate the Responsible AI Standard process: https://aka.ms/ResponsibleAIGuidelines"
+        "importance": "Not all AI use cases carry the same level of risk. High-impact decisions — especially those affecting customers, hiring, finance, or compliance — need additional scrutiny before launch. Review gates help apply consistent standards.",
+        "guidance": "Define what qualifies as a 'high-risk' use case — based on audience, decision type, or data sensitivity. Require a Responsible AI review before launch. Microsoft’s Responsible AI Standard can guide your process: https://aka.ms/ResponsibleAIGuidelines"
     },
     {
         "id": "card14",
         "content": "Include AI risk in project planning",
         "score": 50,
         "description": "A transparency report details AI usage for accountability.",
-        "importance": "Embedding AI risk in project planning ensures it's considered from day one, not as an afterthought.",
-        "guidance": "Use Microsofts AI readiness tools and risk registers. See: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/innovate/responsible-ai"
+        "importance": "When AI risk is built into project planning — not added later — it becomes part of the delivery mindset. This reduces surprises, aligns teams on expectations, and ensures governance keeps pace with innovation.",
+        "guidance": "Add AI risk prompts to your project intake forms or planning templates. Ask questions like: What decisions is this AI influencing? Who could be impacted if it’s wrong? Use Microsoft’s Responsible AI guidance from the Cloud Adoption Framework: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/innovate/responsible-ai"
     }
 ];
     // Immutable copy of deck for lookups
